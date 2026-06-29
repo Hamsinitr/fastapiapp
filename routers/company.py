@@ -21,9 +21,10 @@ def create_company(company: CompanyCreate, db: Session = Depends(get_db)):
 
 
 # Get All Companies
-@router.get("/", response_model=list[CompanyResponse])
+@router.get("/",response_model=list[CompanyResponse])
 def get_all_company(db: Session = Depends(get_db)):
-    return db.query(Company).all()
+    companies=db.query(Company).all()
+    return companies
 
 
 # Get Company by ID
@@ -31,7 +32,7 @@ def get_all_company(db: Session = Depends(get_db)):
 def get_company(company_id: int, db: Session = Depends(get_db)):
     company = db.query(Company).filter(Company.id == company_id).first()
 
-    if company is None:
+    if not company:
         raise HTTPException(status_code=404, detail="Company not found")
 
     return company
