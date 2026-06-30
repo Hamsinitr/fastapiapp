@@ -1,18 +1,22 @@
-import { getCompanies } from "../Services/CompanyService";
-import { useEffect, useState } from "react";
 import type { Company } from "../types/company";
 
-function CompanyCard() {
-  const [companies, setCompanies] = useState<Company[]>([]);
+type Props={
+  companies:Company[]
+}
 
-  async function fetchCompanies() {
-    const companies = await getCompanies();
-    setCompanies(companies);
-  }
+function CompanyCard({ 
+  companies }: Props) {
 
-  useEffect(() => {
-    fetchCompanies();
-  }, []);
+  // const [companies, setCompanies] = useState<Company[]>([]);
+
+  // async function fetchCompanies() {
+  //   const companies = await getCompanies();
+  //   setCompanies(companies);
+  // }
+
+  // useEffect(() => {
+  //   fetchCompanies();
+  // }, []);
 
   return (
     <div>
